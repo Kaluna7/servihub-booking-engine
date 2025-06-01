@@ -5,5 +5,5 @@ export interface BookingPayload {
   end: string;
   status: "pending" | "approved" | "rejected" | "cancelled";
   resourceIds?: string[];
-  customFields: Record<string, any>;
+  customFields: Record<string, unknown>;
 }
