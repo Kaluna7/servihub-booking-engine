@@ -1,5 +1,8 @@
-export function CustomerView(){
-    return(
-        <h1 className="font-bold text-[2000px]">Hello</h1>
-    );
-}
+import React from "react";
+import { CalendarShell } from "../components/CalenderShell";
+
+export const CustomerView: React.FC = () => (
+  <div>
+    <CalendarShell />
+  </div>
+);
