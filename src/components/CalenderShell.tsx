@@ -31,21 +31,23 @@ export const CalendarShell: React.FC = () => {
     let backgroundColor = "";
     switch (event.status) {
       case "pending":
-        backgroundColor = "bg-indigo-400";
+        backgroundColor = "bg-indigo-500 border-l-4 border-indigo-700";
         break;
       case "approved":
-        backgroundColor = "bg-emerald-400";
+        backgroundColor = "bg-emerald-500 border-l-4 border-emerald-700";
         break;
       case "rejected":
-        backgroundColor = "bg-red-500";
+        backgroundColor = "bg-red-500 border-l-4 border-red-700";
         break;
       case "cancelled":
-        backgroundColor = "bg-muted";
+        backgroundColor = "bg-gray-500 border-l-4 border-gray-700";
         break;
       default:
-        backgroundColor = "bg-primary";
+        backgroundColor = "bg-blue-500 border-l-4 border-blue-700";
     }
-    return { className: `${backgroundColor} text-white rounded` };
+    return { 
+      className: `${backgroundColor} text-white py-1 px-2 rounded-md text-sm font-medium` 
+    };
   };
 
   const handleSelectSlot = (slotInfo: SlotInfo) => {
@@ -54,17 +56,30 @@ export const CalendarShell: React.FC = () => {
   };
 
   return (
-    <div className="p-4">
-      <Calendar
-        localizer={localizer}
-        events={events}
-        defaultView={Views.MONTH}
-        views={[Views.MONTH, Views.WEEK, Views.DAY, Views.AGENDA]}
-        selectable
-        onSelectSlot={handleSelectSlot}
-        style={{ height: "80vh" }}
-        eventPropGetter={eventStyleGetter}
-      />
+    <div className="flex flex-col h-full p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+      <div className="mb-4">
+        <h1 className="text-xl font-semibold text-gray-800">Booking Calendar</h1>
+        <p className="text-gray-500 text-sm mt-1">
+          Select a time slot to create new booking
+        </p>
+      </div>
+
+      <div className="flex-grow bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <Calendar
+          localizer={localizer}
+          events={events}
+          defaultView={Views.MONTH}
+          views={[Views.MONTH, Views.WEEK, Views.DAY, Views.AGENDA]}
+          selectable
+          onSelectSlot={handleSelectSlot}
+          style={{ height: "calc(100vh - 180px)" }}
+          eventPropGetter={eventStyleGetter}
+          dayPropGetter={() => ({ 
+            className: "hover:bg-gray-50 transition-colors" 
+          })}
+        />
+      </div>
+
       {dialogOpen && selectedSlot && (
         <BookingDialog slot={selectedSlot} onClose={() => setDialogOpen(false)} />
       )}
