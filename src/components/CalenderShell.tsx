@@ -28,25 +28,26 @@ export const CalendarShell: React.FC = () => {
   }));
 
   const eventStyleGetter = (event: ExtendedEvent) => {
-    let backgroundColor = "";
+    let bgClass = "";
     switch (event.status) {
       case "pending":
-        backgroundColor = "bg-indigo-500 border-l-4 border-indigo-700";
+        bgClass = "bg-indigo-500 border-l-4 border-indigo-700";
         break;
       case "approved":
-        backgroundColor = "bg-emerald-500 border-l-4 border-emerald-700";
+        bgClass = "bg-emerald-500 border-l-4 border-emerald-700";
         break;
       case "rejected":
-        backgroundColor = "bg-red-500 border-l-4 border-red-700";
+        bgClass = "bg-red-500 border-l-4 border-red-700";
         break;
       case "cancelled":
-        backgroundColor = "bg-gray-500 border-l-4 border-gray-700";
+        bgClass = "bg-gray-500 border-l-4 border-gray-700";
         break;
       default:
-        backgroundColor = "bg-blue-500 border-l-4 border-blue-700";
+        bgClass = "bg-blue-500 border-l-4 border-blue-700";
     }
-    return { 
-      className: `${backgroundColor} text-white py-1 px-2 rounded-md text-sm font-medium` 
+
+    return {
+      className: `${bgClass} text-white py-1 px-3 rounded-md text-sm font-medium`,
     };
   };
 
@@ -56,11 +57,11 @@ export const CalendarShell: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-full p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+    <div className="flex flex-col h-full p-6 bg-white rounded-xl shadow border border-gray-100">
       <div className="mb-4">
-        <h1 className="text-xl font-semibold text-gray-800">Booking Calendar</h1>
+        <h1 className="text-2xl font-semibold text-gray-800">Booking Calendar</h1>
         <p className="text-gray-500 text-sm mt-1">
-          Select a time slot to create new booking
+          Select a time slot to create a new booking
         </p>
       </div>
 
@@ -74,8 +75,8 @@ export const CalendarShell: React.FC = () => {
           onSelectSlot={handleSelectSlot}
           style={{ height: "calc(100vh - 180px)" }}
           eventPropGetter={eventStyleGetter}
-          dayPropGetter={() => ({ 
-            className: "hover:bg-gray-50 transition-colors" 
+          dayPropGetter={() => ({
+            className: "hover:bg-gray-50 transition-colors",
           })}
         />
       </div>

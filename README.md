@@ -24,31 +24,50 @@ export default tseslint.config({
   languageOptions: {
     // other options...
     parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
 ```
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import reactX from "eslint-plugin-react-x";
+import reactDom from "eslint-plugin-react-dom";
 
 export default tseslint.config({
   plugins: {
     // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
+    "react-x": reactX,
+    "react-dom": reactDom,
   },
   rules: {
     // other rules...
     // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
+    ...reactX.configs["recommended-typescript"].rules,
     ...reactDom.configs.recommended.rules,
   },
-})
+});
 ```
+
+# ServiHub Booking Engine
+
+A proof-of-concept booking engine built for the ServiHub internship assessment.
+
+## Setup
+
+1. Clone this repository
+2. Run `pnpm install`
+3. Start the development server with `pnpm dev`
+
+## Stack & Decisions
+
+- **React 18 + TypeScript** for strong typing and component modularity
+- **Vite** for fast development and build performance
+- **Tailwind CSS + shadcn/ui** for consistent styling using design tokens
+- **react-big-calendar** as the calendar UI, styled with Tailwind
+- **Zustand** for simple and lightweight state management (bookings)
+- **React Router v6** for role-based routing and view management
